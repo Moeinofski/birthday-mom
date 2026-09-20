@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>تولدت مبارک</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background particles -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Audio visualizer -->
+  <canvas id="visualizer-canvas"></canvas>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Music control -->
+  <button class="music-ctrl" id="music-ctrl" aria-label="پخش / مکث موسیقی">
+    <svg id="icon-play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+    </svg>
+    <svg id="icon-pause" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <rect x="5" y="3" width="4" height="18" fill="currentColor"/>
+      <rect x="15" y="3" width="4" height="18" fill="currentColor"/>
+    </svg>
+  </button>
+
+  <!-- Hidden audio element -->
+  <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
+
+  <!-- ═══════════════ STAGE 1 ═══════════════ -->
+  <section class="stage active" id="stage-1">
+    <div class="stage-content">
+      <h1 class="title-main fade-in-delayed" data-delay="400">مامان…</h1>
+      <p class="subtitle fade-in-delayed" data-delay="1400">امشب فقط چند دقیقه با من باش.</p>
+      <button class="btn fade-in-delayed" data-delay="2600" id="btn-1">ادامه ←</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STAGE 2 ═══════════════ -->
+  <section class="stage" id="stage-2">
+    <div class="stage-content">
+      <p class="text-lead">این بار فقط دنبالم بیا.</p>
+      <p class="text-body">هیچ کاری لازم نیست بکنی.<br />فقط هر بار که گفتم، روی ادامه بزن.</p>
+      <button class="btn" id="btn-2">باشه</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STAGE 3 ═══════════════ -->
+  <section class="stage" id="stage-3">
+    <div class="stage-content">
+      <p class="text-lead">حالا…</p>
+      <p class="text-body">اگه می‌تونی صدای گوشی رو کمی بیشتر کن.<br />می‌خوام این قسمت رو با هم بشنویم.</p>
+      <button class="btn" id="btn-3">ادامه</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STAGE 4 ═══════════════ -->
+  <section class="stage" id="stage-4">
+    <div class="stage-content">
+      <p class="text-lead">مامان،<br />می‌دونی امروز چه روزیه؟</p>
+      <p class="text-muted">یه جواب خیلی ساده داره.</p>
+      <button class="btn" id="btn-4">آره :)</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STAGE 5 ═══════════════ -->
+  <section class="stage" id="stage-5">
+    <div class="stage-content">
+      <div class="glow-center"></div>
+      <h2 class="title-reveal" id="title-reveal">تولدت مبارک<br /><span class="accent">مامان ❤️</span></h2>
+      <p class="text-body reveal-sub">این فقط یه صفحه‌ست،<br />ولی حرفی که پشتشه واقعیه.</p>
+      <button class="btn" id="btn-5">بخون…</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STAGE 6 ═══════════════ -->
+  <section class="stage" id="stage-6">
+    <div class="stage-content letter-content">
+      <!--
+        ════════════════════════════════════════════
+        متن نامه را اینجا ویرایش کنید.
+        هر <p class="letter-line"> یک خط جداگانه است
+        که به‌ترتیب و با تأخیر نمایش داده می‌شود.
+        ════════════════════════════════════════════
+      -->
+      <div class="letter-lines" id="letter-lines">
+        <p class="letter-line">مامان،</p>
+        <p class="letter-line">شاید هیچ‌وقت نتونم با چند تا کلمه بگم چقدر بودنت برای من ارزشمنده.</p>
+        <p class="letter-line">برای تمام روزهایی که کنارم بودی،</p>
+        <p class="letter-line">برای تمام نگرانی‌هات،</p>
+        <p class="letter-line">برای تمام چیزهایی که شاید هیچ‌وقت ندیدم، ولی برای من انجام دادی…</p>
+        <p class="letter-line">فقط می‌خوام امروز بدونی که</p>
+        <p class="letter-line">بودنت برای من باارزشه.</p>
+        <p class="letter-line">و بیشتر از چیزی که شاید بتونم بگم، دوستت دارم.</p>
+      </div>
+      <button class="btn letter-btn" id="btn-6" style="opacity:0;pointer-events:none;">یه چیز دیگه مونده…</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STAGE 7 — Candle ═══════════════ -->
+  <section class="stage" id="stage-7">
+    <div class="stage-content candle-content">
+      <p class="text-lead">یه آرزو کن…</p>
+      <div class="candle-wrap" id="candle-wrap">
+        <!-- Candle SVG -->
+        <svg class="candle-svg" viewBox="0 0 80 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Flame glow filter -->
+          <defs>
+            <filter id="flame-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="flame-glow-outer" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="candle-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#c8a97e"/>
+              <stop offset="40%" stop-color="#f0dfc0"/>
+              <stop offset="100%" stop-color="#b89060"/>
+            </linearGradient>
+            <linearGradient id="wax-drip" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f0dfc0"/>
+              <stop offset="100%" stop-color="#c8a97e"/>
+            </linearGradient>
+          </defs>
+          <!-- Candle body -->
+          <rect x="25" y="90" width="30" height="80" rx="4" fill="url(#candle-grad)"/>
+          <!-- Wax surface -->
+          <ellipse cx="40" cy="90" rx="15" ry="4" fill="url(#wax-drip)"/>
+          <!-- Wick -->
+          <line x1="40" y1="90" x2="40" y2="76" stroke="#3a2a1a" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Outer glow flame (decorative) -->
+          <g class="flame-group" id="flame-group">
+            <ellipse class="flame-outer" cx="40" cy="58" rx="10" ry="16" fill="rgba(255,160,30,0.18)" filter="url(#flame-glow-outer)"/>
+            <!-- Main flame shape -->
+            <path class="flame-main" d="M40,40 C46,50 50,58 46,68 C43,74 37,74 34,68 C30,58 34,50 40,40 Z" fill="#ffb347" filter="url(#flame-glow)"/>
+            <!-- Inner flame -->
+            <path class="flame-inner" d="M40,48 C43,54 44,60 42,65 C41,68 39,68 38,65 C36,60 37,54 40,48 Z" fill="#fff3b0"/>
+            <!-- Flame tip highlight -->
+            <circle class="flame-tip" cx="40" cy="44" r="2.5" fill="#fffde0" opacity="0.85"/>
+          </g>
+        </svg>
+      </div>
+      <p class="text-muted candle-hint">بعد روی شمع بزن.</p>
+      <button class="btn candle-btn" id="btn-candle">خاموشش کن</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FINAL STAGE ═══════════════ -->
+  <section class="stage" id="stage-final">
+    <div class="stage-content final-content">
+      <div class="final-glow"></div>
+      <div class="final-lines" id="final-lines">
+        <p class="final-line" data-delay="0">تولدت مبارک</p>
+        <p class="final-line accent" data-delay="900">بهترین مامان دنیا ❤️</p>
+        <p class="final-line final-wish" data-delay="2000">امیدوارم هر سال،<br />بیشتر از قبل<br />دلیل برای خندیدن داشته باشی.</p>
+        <p class="final-line final-love" data-delay="3600">دوستت دارم، همیشه.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
